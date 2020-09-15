@@ -2,7 +2,7 @@
 
 delete-ports() {
     echo "Delete all ports"
-    netID="$(openstack network show pgo-net -f json |jq -r ".id")"
+    netID="$(openstack network show $1 -f json |jq -r ".id")"
     echo "Network id: $netID"
     pIDs="$(openstack port list --network $netID -f json | jq -r ".[] | .ID")"
     for i in $pIDs; do
